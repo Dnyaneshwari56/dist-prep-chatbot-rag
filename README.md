@@ -275,19 +275,4 @@ To update the disaster preparedness information:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## ⚠️ Disclaimer
 
-This tool provides information from trusted sources but should not replace official emergency guidance. Always follow local emergency management directives and official evacuation orders.
-
-## 🆘 Support
-
-If you encounter issues:
-
-1. Check the troubleshooting section
-2. Review the logs for error messages
-3. Open an issue on GitHub with detailed error information
-4. Include your system information and configuration
-
----
-
-**Built with ❤️ for disaster preparedness and community safety**
