@@ -56,7 +56,7 @@ class DisasterRAGApp:
             groq_api_key = os.getenv("GROQ_API_KEY")
             logger.info(f"Groq API key found: {bool(groq_api_key)}")
             if groq_api_key and groq_api_key != "your_groq_api_key_here":
-                self.llm = ChatGroq(api_key=groq_api_key, model="llama3-8b-8192")
+                self.llm = ChatGroq(api_key=groq_api_key, model="llama-3.3-70b-versatile")
                 st.success("✅ Connected to Groq API successfully!")
             else:
                 st.error("❌ Groq API key not found or invalid. Please check your .env file.")
@@ -111,7 +111,36 @@ class DisasterRAGApp:
         ])
         
         # Create prompt
-        prompt = f"""You are a Disaster Preparedness & Response Assistant. Use ONLY context from FEMA, CDC, NOAA, Red Cross, WHO, UNDRR. If information is not found in the provided context, say "I don't have that information from trusted sources."
+       prompt = f"""You are an expert assistant specialized in disaster preparedness and emergency response.
+
+Your goal is to help users:
+- Understand risks
+- Create disaster plans
+- Prepare emergency kits
+- Get reliable updates during disasters
+- Respond calmly and effectively
+
+User context: 
+- Location: {user_location}
+- Disaster type(s): {disaster_type}  (e.g., earthquake, flood, cyclone, wildfire)
+- User type: {user_type}  (e.g., individual, family, community group, school)
+
+Instructions:
+- Provide clear, actionable, step-by-step advice
+- Use simple language, avoid jargon
+- Adapt guidance to the specific disaster type and location
+- Mention official resources and local emergency numbers if known
+- End with a brief safety reminder
+
+User’s question or concern:
+{user_message}
+
+Expected format:
+- Brief summary of the risk
+- Step-by-step preparedness advice
+- Emergency contacts or resources
+- Closing safety reminder
+Use ONLY context from FEMA, CDC, NOAA, Red Cross, WHO, UNDRR. If information is not found in the provided context, say "I don't have that information from trusted sources."
 
 Context:
 {context_text}
